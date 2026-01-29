@@ -1,27 +1,17 @@
-#ifndef GRAPH_H
-#define GRAPH_H
+#ifndef BFS_H
+#define BFS_H
 
+#include "Graph.h"
 #include <vector>
 #include <map>
 
-class Graph {
-private:
-    std::map<int, std::vector<int>> adj;
-    bool directed;
-    int edges;
-
-public:
-    Graph(bool directed = false);
-
-    void addVertex(int v);
-    void addEdge(int u, int v);
-
-    std::vector<int> neighbors(int v) const;
-
-    int V() const;
-    int E() const;
-
-    bool isDirected() const;
+struct BFSResult {
+    std::vector<int> order;
+    std::map<int, int> distance;
+    std::map<int, int> parent;
 };
+
+BFSResult bfs(const Graph& g, int start);
+std::vector<int> shortestPath(const Graph& g, int s, int t);
 
 #endif
